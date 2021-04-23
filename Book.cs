@@ -66,9 +66,16 @@ namespace VismaBookLibrary
 
         private DateTime IssuedOn { get; set; }
         private bool OnLoan { get; set; }
-        public Book( int max_loan_period = 60)
+        public Book( string author, string title, string language, string category, int isbn, int publicationDate, int max_loan_period = 60, decimal lateFee = 0.25m)
         {
+            Author = author;
+            Title = title;
+            Language = language;
+            Category = category;
+            ISBN = isbn;
+            PublicationDate = publicationDate;
             Max_Loan_Period = max_loan_period;
+            LateFee = lateFee;
         }
         // returns status of the book
         public bool LoanBook(Patron patron, int days = 7)
@@ -93,20 +100,43 @@ namespace VismaBookLibrary
                 }
             }
         }
-        
+
         public bool ReturnBook(Patron patron)
         {
-            if (IsLate())
+            if (patron.PatronID == IssuedTo.PatronID)
             {
-                int days = int.Parse((DateTime.Now - IssuedOn).TotalDays.ToString()) - Max_Loan_Period;
-                decimal Penalty = ApplyPenalty(days);
+                if (IsLate())
+                {
+                    int days = int.Parse((DateTime.Now - IssuedOn).TotalDays.ToString()) - Max_Loan_Period;
+                    decimal Penalty = ApplyPenalty(days);
+                    Console.WriteLine($"The late fee of {Penalty:C} has been applied. Please pay the charges due.");
+                    Console.WriteLine("PLACEHOLDER FOR FUNNY MESSAGE");
+
+                    Console.ReadLine();
+                    OnLoan = false;
+                    IssuedTo = null;
+                    return true;
+                }
+                else
+                {
+                    OnLoan = false;
+                    IssuedTo = null;
+                    Console.WriteLine("The book has been returned. Thank you.");
+                    return true;
+                }
+
+            } else
+            {
+                Console.WriteLine("You did not borrow this book, so you cannot return it.");
+                return false;
             }
-            return true;
         }
 
         private decimal ApplyPenalty(int days)
         {
             //throw new NotImplementedException();
+            Console.WriteLine("FUNNY MESSAGE PLACEHOLDER");
+            return days * LateFee;
         }
 
         private bool IsLate()
