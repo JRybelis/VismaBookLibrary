@@ -10,7 +10,7 @@ namespace VismaBookLibrary
     class Patron
     {
         private string _name;
-        string Name
+        public string Name
         {
             get => _name;
             private set
