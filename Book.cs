@@ -66,12 +66,19 @@ namespace VismaBookLibrary
 
         private DateTime IssuedOn { get; set; }
         private bool OnLoan { get; set; }
-        public Book( string author, string title, string language, string category, int isbn, int publicationDate, int max_loan_period = 60, decimal lateFee = 0.25m)
+        public Book(string author,
+                    string title,
+                    string language,
+                    string category,
+                    int isbn,
+                    int publicationDate,
+                    int max_loan_period = 60,
+                    decimal lateFee = 0.25m)
         {
             Author = author;
             Title = title;
             Language = language;
-            Category = category;
+            Category = category.Trim();
             ISBN = isbn;
             PublicationDate = publicationDate;
             Max_Loan_Period = max_loan_period;

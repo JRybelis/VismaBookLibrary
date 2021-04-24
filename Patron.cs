@@ -22,6 +22,7 @@ namespace VismaBookLibrary
                 }
                 else
                 {
+                    _name = "DEFAULT";
                     Console.WriteLine("Please enter a valid name. /t Only Latin alphabet without special characters or digits allowed.");
                 }
 
@@ -44,6 +45,12 @@ namespace VismaBookLibrary
                     Console.WriteLine("Please enter a valid ID. /t Only digits are allowed.");
                 }
             }
+        }
+
+        public Patron(string name, int patronID)
+        {
+            Name = name;
+            PatronID = patronID;
         }
     }
 }
