@@ -14,7 +14,7 @@ namespace VismaBookLibrary.App.Controllers
         List<Book> books;
         public void updateJSON()
         {
-            string json = JsonConvert.SerializeObject(patrons, Formatting.Indented);
+            string json = JsonConvert.SerializeObject( patrons, Formatting.Indented);
             File.WriteAllText("patrons.json", json);
             
             json = JsonConvert.SerializeObject(books, Formatting.Indented);
@@ -36,6 +36,22 @@ namespace VismaBookLibrary.App.Controllers
             } else
             {
                 patrons = new List<Patron>();
+            }
+
+            if (File.Exists("books.json"))
+            {
+                string json = File.ReadAllText("books.json");
+                if (json == "")
+                {
+                    books = new List<Book>();
+                }
+                else
+                {
+                    books = JsonConvert.DeserializeObject<List<Book>>(json);
+                }
+            } else
+            {
+                books = new List<Book>();
             }
         }
     }

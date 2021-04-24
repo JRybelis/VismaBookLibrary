@@ -9,12 +9,12 @@ namespace VismaBookLibrary
 {
     class Book
     {
+        List<Book> books;
         private decimal LateFee { get; set; } // per day
-        public int Max_Loan_Period { get; set; }
-        public int Book_Basket { get; set; }
+        public int MaxLoanPeriodDays { get; set; }
+        public int BookBasket { get; set; }
         
         private string _author;
-
         public string Author
         {
             get => _author;
@@ -24,18 +24,43 @@ namespace VismaBookLibrary
             }
         }
 
-        public string Title { get; private set; }
-        public string Language { get; private set; }
-        public string Category { get; private set; }
+        private string _title;
+        public string Title
+        { 
+            get => _title;
+            private set
+            {
+                _title = value;        
+            } 
+        }
 
+        private string _language;
+        public string Language 
+        { 
+            get => _language;
+            private set
+            {
+                _language = value;
+            }
+        }
 
-        private int _ISBN;
-        public int ISBN { get => _ISBN; private set
+        private string _category;
+        public string Category 
+        { 
+            get => _category;
+            private set
+            {
+                _category = value;
+            }
+        }
+
+        private string _iSBN;
+        public string ISBN { get => _iSBN; private set
             {
                 Regex regex = new Regex(@"^[0-9]{13}$");
                 if (regex.IsMatch(value.ToString()))
                 {
-                    _ISBN = value;
+                    _iSBN = value;
                 } else
                 {
                     Console.WriteLine("Please ensure that the ISBN number supplied is correct. /t The current standard is 13 digits in length. To convert ISBNS of old titles to it, please use the ISBN calculator at https://www.isbn-international.org");
@@ -43,6 +68,7 @@ namespace VismaBookLibrary
             }
 
         }
+
         private int _publicationDate;
         public int PublicationDate
         {
@@ -60,19 +86,30 @@ namespace VismaBookLibrary
 
         }
 
-        private Patron _IssuedTo;
+        internal int id;
 
-        private Patron IssuedTo { get; set; }
+        private Patron _issuedTo;
+        
+        private Patron IssuedTo { get;  set; }
 
         private DateTime IssuedOn { get; set; }
-        private bool OnLoan { get; set; }
+        
+        private bool _onLoan;
+        public bool OnLoan 
+        { 
+            get => _onLoan;
+            private set
+            {
+                _onLoan = value;
+            }
+        }
         public Book(string author,
                     string title,
                     string language,
                     string category,
-                    int isbn,
+                    string isbn,
                     int publicationDate,
-                    int max_loan_period = 60,
+                    int maxLoanPeriod = 60,
                     decimal lateFee = 0.25m)
         {
             Author = author;
@@ -81,30 +118,33 @@ namespace VismaBookLibrary
             Category = category.Trim();
             ISBN = isbn;
             PublicationDate = publicationDate;
-            Max_Loan_Period = max_loan_period;
+            MaxLoanPeriodDays = maxLoanPeriod;
             LateFee = lateFee;
         }
         // returns status of the book
-        public bool LoanBook(Patron patron, int days = 7)
+        public bool LoanBook(Patron patron, int bookId, int requestedLoanPeriodDays = 7)
         {
-            if (days > Max_Loan_Period)
+            Book requestedBook = books.Find(item => item.id == bookId);
+
+            if (requestedBook == null)
             {
-                Console.WriteLine("The book cannot be issued for longer than {0} days. Please adjust the loan period.", Max_Loan_Period);
-                return false; 
+                Console.WriteLine("Unfortunately, the requested book does not exist in the library catalogue. Please try requesting a different book.");
+                return false;
+            } else if (OnLoan)
+            {
+                Console.WriteLine($"That book is already issued to {IssuedTo.Name} {IssuedTo.Surname}.");
+                return false;
+            } else if (requestedLoanPeriodDays > MaxLoanPeriodDays)
+            {
+                Console.WriteLine("The book cannot be issued for longer than {0} days. Please adjust the loan period.", MaxLoanPeriodDays);
+                return false;
             } else
             {
-                if (OnLoan)
-                {
-                    Console.WriteLine($"The book is already issued to {IssuedTo.Name}");
-                    return false;
-                } else
-                {
-                    OnLoan = true;
-                    IssuedTo = patron;
-                    IssuedOn = DateTime.Now;
-                    Console.WriteLine("Book has been issued to PATRON-NAME-PLACEHOLDER.");
-                    return true;
-                }
+                OnLoan = true;
+                IssuedTo = patron;
+                IssuedOn = DateTime.Now; // add past date of issue? 
+                Console.WriteLine($"Book has been issued to {IssuedTo.Name} {IssuedTo.Surname}.");
+                return true;
             }
         }
 
@@ -114,7 +154,7 @@ namespace VismaBookLibrary
             {
                 if (IsLate())
                 {
-                    int days = int.Parse((DateTime.Now - IssuedOn).TotalDays.ToString()) - Max_Loan_Period;
+                    int days = int.Parse((DateTime.Now - IssuedOn).TotalDays.ToString()) - MaxLoanPeriodDays;
                     decimal Penalty = ApplyPenalty(days);
                     Console.WriteLine($"The late fee of {Penalty:C} has been applied. Please pay the charges due.");
                     Console.WriteLine("PLACEHOLDER FOR FUNNY MESSAGE");
@@ -148,7 +188,7 @@ namespace VismaBookLibrary
 
         private bool IsLate()
         {
-            if ((DateTime.Now - IssuedOn).TotalDays > Max_Loan_Period)
+            if ((DateTime.Now - IssuedOn).TotalDays > MaxLoanPeriodDays)
             {
                 return true;
             } else
