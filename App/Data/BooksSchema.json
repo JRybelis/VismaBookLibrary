@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": true,
+  "title": "BooksSchema",
+  "definitions": {
+    "comment": {
+      "title": "Comment:",
+      "type": "string",
+      "format": "textarea",
+      "default": ""
+    },
+    "yesno": {
+      "default": "yes",
+      "type": "string",
+      "enum": [
+        "yes",
+        "no"
+      ]
+    }
+  },
+  "type": "array",
+  "id": "https://niebert.github.io/json-editor",
+  "format": "tabs",
+  "options": {
+    "disable_collapse": false,
+    "disable_array_add": false,
+    "disable_array_delete": false,
+    "disable_array_reorder": false,
+    "disable_properties": false,
+    "collapsed": false,
+    "hidden": false
+  },
+  "items": {
+    "headerTemplate": "BooksSchema {{i1}}",
+    "oneOf": [
+      {
+        "type": "object",
+        "id": "/oneof0",
+        "title": "oneof 0 ",
+        "options": {
+          "disable_collapse": false,
+          "disable_edit_json": false,
+          "disable_properties": false,
+          "collapsed": false,
+          "hidden": false
+        },
+        "defaultProperties": [
+          "Authors",
+          "Title",
+          "Language",
+          "Category",
+          "PublicationDate",
+          "ISBN"
+        ],
+        "properties": {
+          "Authors": {
+            "type": "array",
+            "id": "/items/properties/Authors",
+            "title": "Authors",
+            "format": "tabs",
+            "options": {
+              "disable_collapse": false,
+              "disable_array_add": false,
+              "disable_array_delete": false,
+              "disable_array_reorder": false,
+              "disable_properties": false,
+              "collapsed": false,
+              "hidden": false
+            },
+            "items": {
+              "type": "string",
+              "id": "/items/properties/Authors/items",
+              "title": "Title Root Authors ",
+              "default": "",
+              "format": "text",
+              "description": "Description for 'items' Type: 'string' Path: '/items/properties/Authors/items'",
+              "options": {
+                "hidden": false
+              }
+            },
+            "propertyOrder": 10
+          },
+          "Title": {
+            "type": "string",
+            "id": "/items/properties/Title",
+            "title": "Title",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'Title' Type: 'string' Path: '/items/properties/Title'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 20
+          },
+          "Language": {
+            "type": "string",
+            "id": "/items/properties/Language",
+            "title": "Language",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'Language' Type: 'string' Path: '/items/properties/Language'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 30
+          },
+          "Category": {
+            "type": "string",
+            "id": "/items/properties/Category",
+            "title": "Category",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'Category' Type: 'string' Path: '/items/properties/Category'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 40
+          },
+          "PublicationDate": {
+            "type": "string",
+            "id": "/items/properties/PublicationDate",
+            "title": "PublicationDate",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'PublicationDate' Type: 'string' Path: '/items/properties/PublicationDate'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 50
+          },
+          "ISBN": {
+            "type": "string",
+            "id": "/items/properties/ISBN",
+            "title": "ISBN",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'ISBN' Type: 'string' Path: '/items/properties/ISBN'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 60
+          }
+        }
+      },
+      {
+        "type": "object",
+        "id": "/oneof1",
+        "title": "oneof 1 ",
+        "options": {
+          "disable_collapse": false,
+          "disable_edit_json": false,
+          "disable_properties": false,
+          "collapsed": false,
+          "hidden": false
+        },
+        "defaultProperties": [
+          "Authors",
+          "Title",
+          "Language",
+          "Category",
+          "PublicationDate",
+          "ISBN"
+        ],
+        "properties": {
+          "Authors": {
+            "type": "array",
+            "id": "/items/properties/Authors",
+            "title": "Authors",
+            "format": "tabs",
+            "options": {
+              "disable_collapse": false,
+              "disable_array_add": false,
+              "disable_array_delete": false,
+              "disable_array_reorder": false,
+              "disable_properties": false,
+              "collapsed": false,
+              "hidden": false
+            },
+            "items": {
+              "headerTemplate": "Authors {{i1}}",
+              "oneOf": [
+                {
+                  "type": "string",
+                  "id": "/items/properties/Authors/oneof0",
+                  "title": "oneof 0 /items/properties/Authors",
+                  "default": "",
+                  "format": "text",
+                  "description": "Description for 'items' Type: 'string' Path: '/items/properties/Authors/items'",
+                  "options": {
+                    "hidden": false
+                  }
+                },
+                {
+                  "type": "string",
+                  "id": "/items/properties/Authors/oneof1",
+                  "title": "oneof 1 /items/properties/Authors",
+                  "default": "",
+                  "format": "text",
+                  "description": "Description for 'items' Type: 'string' Path: '/items/properties/Authors/items'",
+                  "options": {
+                    "hidden": false
+                  }
+                },
+                {
+                  "type": "string",
+                  "id": "/items/properties/Authors/oneof2",
+                  "title": "oneof 2 /items/properties/Authors",
+                  "default": "",
+                  "format": "text",
+                  "description": "Description for 'items' Type: 'string' Path: '/items/properties/Authors/items'",
+                  "options": {
+                    "hidden": false
+                  }
+                }
+              ]
+            },
+            "propertyOrder": 10
+          },
+          "Title": {
+            "type": "string",
+            "id": "/items/properties/Title",
+            "title": "Title",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'Title' Type: 'string' Path: '/items/properties/Title'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 20
+          },
+          "Language": {
+            "type": "string",
+            "id": "/items/properties/Language",
+            "title": "Language",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'Language' Type: 'string' Path: '/items/properties/Language'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 30
+          },
+          "Category": {
+            "type": "string",
+            "id": "/items/properties/Category",
+            "title": "Category",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'Category' Type: 'string' Path: '/items/properties/Category'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 40
+          },
+          "PublicationDate": {
+            "type": "string",
+            "id": "/items/properties/PublicationDate",
+            "title": "PublicationDate",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'PublicationDate' Type: 'string' Path: '/items/properties/PublicationDate'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 50
+          },
+          "ISBN": {
+            "type": "string",
+            "id": "/items/properties/ISBN",
+            "title": "ISBN",
+            "default": "",
+            "format": "text",
+            "description": "Description for 'ISBN' Type: 'string' Path: '/items/properties/ISBN'",
+            "options": {
+              "hidden": false
+            },
+            "propertyOrder": 60
+          }
+        }
+      }
+    ]
+  }
+}

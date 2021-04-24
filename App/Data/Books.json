@@ -1,0 +1,53 @@
+﻿{
+  "$schema": "BooksSchema.json",
+  [
+    {
+      "Authors": [ "Ngũgĩ wa Thiong'o" ],
+      "Title": "A Grain of Wheat",
+      "Language": "English",
+      "Category": "Fiction",
+      "PublicationDate": "1986",
+      "ISBN": "9780141186993"
+    },
+    {
+      "Authors": [ "Rolandas Kregždys" ],
+      "Title": "Baltų mitologemų etimologijos žodynas",
+      "Language": "Lithuanian",
+      "Category": "Etymological dictionary",
+      "PublicationDate": "2012",
+      "ISBN": "9789955868507"
+    },
+    {
+      "Authors": [ "John Baylis", "Steve Smith", "Patricia Owens" ],
+      "Title": "The Globalization of World Politics. An Introduction to International Relations",
+      "Language": "English",
+      "Category": "Textbook",
+      "PublicationDate": "2008",
+      "ISBN": "9780199297771"
+    },
+    {
+      "Authors": [ "Liew Mun Leong" ],
+      "Title": "Building People. Sunday Emails from a CEO",
+      "Language": "English",
+      "Category": "Non-fiction",
+      "PublicationDate": "2013",
+      "ISBN": "9781118469422"
+    },
+    {
+      "Authors": [ "Matteo Civaschi", "Gianmarco Milesi" ],
+      "Title": "Life in five seconds. Over 200 stories for those with no time to waste",
+      "Language": "English",
+      "Category": "Picture book",
+      "PublicationDate": "2012",
+      "ISBN": "9781780876764"
+    },
+    {
+      "Authors": [ "Herbert P. Bix" ],
+      "Title": "Hirohito. And the making of modern Japan",
+      "Language": "English",
+      "Category": "Biography",
+      "PublicationDate": "2000",
+      "ISBN": "9780060931308"
+    }
+  ]
+}
