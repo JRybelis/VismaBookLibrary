@@ -148,9 +148,15 @@ namespace VismaBookLibrary
             }
         }
 
-        public bool ReturnBook(Patron patron)
+        public bool ReturnBook(Patron patron, int bookId)
         {
-            if (patron.PatronID == IssuedTo.PatronID)
+            Book bookBeingReturned = books.Find(item => item.id == bookId);
+
+            if (bookBeingReturned == null)
+            {
+                Console.WriteLine("You did not borrow this book, so you cannot return it.");
+                return false;
+            } else if (patron.PatronID == bookBeingReturned.IssuedTo.PatronID)
             {
                 if (IsLate())
                 {
@@ -160,23 +166,16 @@ namespace VismaBookLibrary
                     Console.WriteLine($"The late fee of {Penalty:C} has been applied. Please pay the charges due.");
                     
                     Console.ReadLine();
-                    OnLoan = false;
-                    IssuedTo = null;
-                    return true;
+                    bookBeingReturned.OnLoan = false;
+                    bookBeingReturned.IssuedTo = null;
                 }
-                else
-                {
-                    OnLoan = false;
-                    IssuedTo = null;
-                    Console.WriteLine("The book has been returned. Thank you.");
-                    return true;
-                }
-
             } else
             {
-                Console.WriteLine("You did not borrow this book, so you cannot return it.");
-                return false;
+                bookBeingReturned.OnLoan = false;
+                bookBeingReturned.IssuedTo = null;
+                Console.WriteLine("The book has been returned. Thank you.");
             }
+            return true;
         }
 
         private decimal ApplyPenalty(int days)

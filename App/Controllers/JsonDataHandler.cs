@@ -8,7 +8,7 @@ using System.IO;
 
 namespace VismaBookLibrary.App.Controllers
 {
-    class DataHandler
+    class JsonDataHandler
     {
         List<Patron> patrons;
         List<Book> books;

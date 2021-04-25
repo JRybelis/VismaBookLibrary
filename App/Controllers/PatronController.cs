@@ -11,7 +11,7 @@ namespace VismaBookLibrary.App.Controllers
         List<Patron> patrons;
         Book book;
         
-        public void PatronBookCount(Patron patron)
+        public void PatronBookCount(Patron patron, int bookId)
         {
             if (patron.PatronBooksOnLoan >= 3)
             {
@@ -21,16 +21,15 @@ namespace VismaBookLibrary.App.Controllers
             {
                 patron.PatronBooksOnLoan++;
                 
-            } else if (book.ReturnBook(patron))
+            } else if (book.ReturnBook(patron, bookId))
             {
                 if (patron.PatronBooksOnLoan != 0 && patron.PatronBooksOnLoan! < 0) 
                 {
                     patron.PatronBooksOnLoan--;
                 } 
             }
-            DataHandler patronJSON = new DataHandler();
+            JsonDataHandler patronJSON = new JsonDataHandler();
             patronJSON.updateJSON();
-            
         }
     }
 }

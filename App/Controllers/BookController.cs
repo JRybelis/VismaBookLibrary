@@ -22,7 +22,7 @@ namespace VismaBookLibrary.App.Controllers
                 book.id = 0;
             }
             books.Add(book);
-            DataHandler bookJSON = new DataHandler();
+            JsonDataHandler bookJSON = new JsonDataHandler();
             bookJSON.updateJSON();
             return true;
         }
@@ -41,7 +41,7 @@ namespace VismaBookLibrary.App.Controllers
             } else
             {
                 books.Remove(targetBook);
-                DataHandler bookJSON = new DataHandler();
+                JsonDataHandler bookJSON = new JsonDataHandler();
                 bookJSON.updateJSON();
                 return true;
             }
