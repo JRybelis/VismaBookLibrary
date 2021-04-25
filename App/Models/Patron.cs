@@ -48,6 +48,16 @@ namespace VismaBookLibrary
             }
         }
 
+        private int _patronBooksOnLoan = 0;
+        public int PatronBooksOnLoan
+        {
+            get => _patronBooksOnLoan;
+            set
+            {
+                _patronBooksOnLoan = value;
+            }
+        }
+
         private int _patronID;
         public int PatronID
         {
@@ -66,9 +76,10 @@ namespace VismaBookLibrary
             }
         }
 
-        public Patron(string name, int patronID)
+        public Patron(string name, string surname, int patronID)
         {
             Name = name;
+            Surname = surname;
             PatronID = patronID;
         }
     }

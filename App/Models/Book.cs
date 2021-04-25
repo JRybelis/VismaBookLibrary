@@ -156,9 +156,9 @@ namespace VismaBookLibrary
                 {
                     int days = int.Parse((DateTime.Now - IssuedOn).TotalDays.ToString()) - MaxLoanPeriodDays;
                     decimal Penalty = ApplyPenalty(days);
-                    Console.WriteLine($"The late fee of {Penalty:C} has been applied. Please pay the charges due.");
                     Console.WriteLine("PLACEHOLDER FOR FUNNY MESSAGE");
-
+                    Console.WriteLine($"The late fee of {Penalty:C} has been applied. Please pay the charges due.");
+                    
                     Console.ReadLine();
                     OnLoan = false;
                     IssuedTo = null;

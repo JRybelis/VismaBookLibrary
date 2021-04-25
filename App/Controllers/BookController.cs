@@ -32,9 +32,11 @@ namespace VismaBookLibrary.App.Controllers
             Book targetBook = books.Find(item => item.id == bookId); 
             if (targetBook == null)
             {
+                Console.WriteLine("Such a book is not included in the library catalogue. Please review your query.");
                 return false; //how will the view differentiate?
             } else if (targetBook.OnLoan)
             {
+                Console.WriteLine("That book is already loaned out to somebody else.");
                 return false; //how will the view differentiate?
             } else
             {
