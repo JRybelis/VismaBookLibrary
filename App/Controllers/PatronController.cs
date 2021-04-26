@@ -13,9 +13,7 @@
         
 //        public void PatronBookCount(Patron patron, int bookId)
 //        {
-//            if (patron.PatronBooksOnLoan >= 3)
-//            {
-//                Console.WriteLine("The patron has exceeded the number of books allowed to take out. Please ensure no more than three books at a time are on loan for each patron.");
+//         
                 
 //            } else if (book.OnLoan)
 //            {
