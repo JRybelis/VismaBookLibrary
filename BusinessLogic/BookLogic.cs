@@ -45,12 +45,12 @@ namespace VismaBookLibrary.BusinessLogic
         {
             var book = _booksData.GetRequestedBook(bookId);
             var patronBooksOnLoan = _booksData.GetBooks(new BooksFilter { PatronName = patronName });
-            //validations to separate class? LoanBookValidations, etc.
+            
             if (book == null) 
             {
                 Console.WriteLine("Unfortunately, the requested book does not exist in the library catalogue. Please try requesting a different book.");
                 return; 
-            } else if (book.Patron != null) // if the book has been loaned out to a patron
+            } else if (book.Patron != null) 
             {
                 Console.WriteLine($"That book is currently issued to {book.Patron.Name}. Please try requesting another book.");
                 return;
