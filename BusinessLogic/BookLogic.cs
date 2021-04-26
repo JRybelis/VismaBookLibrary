@@ -24,7 +24,7 @@ namespace VismaBookLibrary.BusinessLogic
             
         }
         
-        public void DeleteBook(int bookId, string patronName)
+        public void DeleteBook(int bookId)
         {
             var book = _booksData.GetRequestedBook(bookId);
             
@@ -72,9 +72,9 @@ namespace VismaBookLibrary.BusinessLogic
             var books = _booksData.GetBooks(new BooksFilter { ISBN = isbn });
             return books;
         }
-        public ICollection<Book> GetBooksByAvailability(string isAvailable)
+        public ICollection<Book> GetBooksByAvailability(bool isAvailable)
         {
-            var books = _booksData.GetBooks(new BooksFilter { IsAvailable = isAvailable});
+            var books = _booksData.GetBooks(new BooksFilter { IsAvailable = isAvailable });
             return books;
         }
 

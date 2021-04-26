@@ -29,17 +29,7 @@ namespace VismaBookLibrary
         {
             SetupDependencies();
             DisplayMainMenu();
-            /*var book = new Book
-            {
-                Author = "aa2",
-                Title = "bla",
-                Category = "vv2",
-                Language = "lt",
-                ISBN = "999999999934",
-                PublicationDate = 2000
-            };*/
-
-            //_bookLogic.SaveBook(book);
+            
         }
 
         private static void DisplayMainMenu()
@@ -67,7 +57,10 @@ namespace VismaBookLibrary
                         DisplayBooks();
                         break;
                     case "3":
-                       // _bookLogic.DeleteBook(bookId, patronName);
+                        Console.WriteLine("Please enter the ID of the book you wish to remove from the catalogue.");
+                        int id = int.Parse(Console.ReadLine());
+                        _bookLogic.DeleteBook(id);
+                        Console.WriteLine("The book has been successfully removed from the library database.\r\n");
                         break;
                     //case "4":
 
@@ -124,7 +117,7 @@ namespace VismaBookLibrary
                     var filteredBooks = _bookLogic.GetBooksByAuthor(author);
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
                 case "2":
@@ -133,7 +126,7 @@ namespace VismaBookLibrary
                     filteredBooks = _bookLogic.GetBooksByTitle(title);
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
                 case "3":
@@ -142,7 +135,7 @@ namespace VismaBookLibrary
                     filteredBooks = _bookLogic.GetBooksByCategory(category);
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
                 case "4":
@@ -151,7 +144,7 @@ namespace VismaBookLibrary
                     filteredBooks = _bookLogic.GetBooksByLanguage(language);
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
                 case "5":
@@ -160,23 +153,33 @@ namespace VismaBookLibrary
                     filteredBooks = _bookLogic.GetBooksByISBN(isbn);
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
                 case "6":
                     Console.WriteLine("Please choose a for available; b for borrowed books.");
-                    string isAvailable = Console.ReadLine();
-                    filteredBooks = _bookLogic.GetBooksByAvailability(isAvailable);
+
+                    string availabilityType = Console.ReadLine();
+                    bool isAvailable;
+                    
+                    if (availabilityType == "a")
+                    {
+                        isAvailable = true;
+                    } else
+                    {
+                        isAvailable = false;
+                    }
+                        filteredBooks = _bookLogic.GetBooksByAvailability(isAvailable);
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
                 case "7":
                     filteredBooks = _bookLogic.GetBooks();
                     foreach (var book in filteredBooks)
                     {
-                        Console.WriteLine($"Book Id: {book.Id}; \r\n {book.Title}, by {book.Author}, {book.PublicationDate}; \r\n category:{book.Category}, language: {book.Language} \r\n ISBN: {book.ISBN} \r\n");
+                        Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
             }
