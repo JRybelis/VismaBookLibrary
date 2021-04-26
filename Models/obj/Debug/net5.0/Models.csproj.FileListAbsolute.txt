@@ -1,0 +1,12 @@
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\bin\Debug\net5.0\Models.deps.json
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\bin\Debug\net5.0\Models.dll
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\bin\Debug\net5.0\ref\Models.dll
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\bin\Debug\net5.0\Models.pdb
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.csprojAssemblyReference.cache
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.AssemblyInfoInputs.cache
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.AssemblyInfo.cs
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.csproj.CoreCompileInputs.cache
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.dll
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\ref\Models.dll
+E:\Dokumentai\Jokubo dokumentai\mokslai\Coding\BIT FSWB\C#\VismaSummerInternship\Models\obj\Debug\net5.0\Models.pdb
