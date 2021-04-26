@@ -1,10 +1,12 @@
 ﻿using Data;
 using Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace VismaBookLibrary.BusinessLogic
 {
@@ -109,7 +111,7 @@ namespace VismaBookLibrary.BusinessLogic
             };
 
             Console.WriteLine($"The book has been issued to {patronName}. It is due to be returned no later than {book.Patron.LoanDate}\r\n");
-           _booksData.SaveBook(book);
+            _booksData.UpdateBookAvailability(book);
         }
         public void ReturnBook(int bookId, string patronName)
         {
@@ -142,7 +144,7 @@ namespace VismaBookLibrary.BusinessLogic
 
             book.Patron = null;
             Console.WriteLine("The book has been returned. Thank you.\r\n");
-            _booksData.SaveBook(book);
+            _booksData.UpdateBookAvailability(book);
         }
     }
 }
