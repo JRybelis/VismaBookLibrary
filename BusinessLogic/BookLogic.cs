@@ -19,12 +19,11 @@ namespace VismaBookLibrary.BusinessLogic
 
         public void SaveBook(Book book)
         {
-
-            //TODO add validations
             book.Id = _booksData.GetMaxId() + 1;
             _booksData.SaveBook(book);
+            
         }
-
+        
         public void DeleteBook(int bookId, string patronName)
         {
             var book = _booksData.GetRequestedBook(bookId);
@@ -41,6 +40,44 @@ namespace VismaBookLibrary.BusinessLogic
 
             _booksData.DeleteBook(book);
         }
+
+        public ICollection<Book> GetBooks()
+        {
+            var books = _booksData.GetBooks(new BooksFilter());
+            return books;
+        }
+        public ICollection<Book> GetBooksByAuthor(string author)
+        {
+            // _booksData.GetBooks(new BooksFilter());
+            var books = _booksData.GetBooks(new BooksFilter { Author = author });
+            return books;
+        }
+        public ICollection<Book> GetBooksByTitle(string title)
+        {
+            var books = _booksData.GetBooks(new BooksFilter { Title = title });
+            return books;
+        }
+        public ICollection<Book> GetBooksByCategory(string category)
+        {
+            var books = _booksData.GetBooks(new BooksFilter { Category = category });
+            return books;
+        }
+        public ICollection<Book> GetBooksByLanguage(string language)
+        {
+            var books = _booksData.GetBooks(new BooksFilter { Language = language });
+            return books;
+        }
+        public ICollection<Book> GetBooksByISBN(string isbn)
+        {
+            var books = _booksData.GetBooks(new BooksFilter { ISBN = isbn });
+            return books;
+        }
+        public ICollection<Book> GetBooksByAvailability(string isAvailable)
+        {
+            var books = _booksData.GetBooks(new BooksFilter { IsAvailable = isAvailable});
+            return books;
+        }
+
         public void LoanBook(int bookId, string patronName, int requestedLoanPeriod)
         {
             var book = _booksData.GetRequestedBook(bookId);
@@ -71,7 +108,7 @@ namespace VismaBookLibrary.BusinessLogic
                 LoanUntilDate = DateTimeOffset.Now.AddDays(requestedLoanPeriod)
             };
 
-            Console.WriteLine($"The book has been issued to {patronName}. It is due to be returned no later than {book.Patron.LoanDate.}");
+            Console.WriteLine($"The book has been issued to {patronName}. It is due to be returned no later than {book.Patron.LoanDate}");
            _booksData.SaveBook(book);
         }
         public void ReturnBook(int bookId, string patronName, int requestedLoanPeriod)
