@@ -7,6 +7,7 @@ using Data;
 using Newtonsoft;
 using Newtonsoft.Json;
 using Models;
+using System.Text.RegularExpressions;
 
 namespace VismaBookLibrary
 {
@@ -29,7 +30,6 @@ namespace VismaBookLibrary
         {
             SetupDependencies();
             DisplayMainMenu();
-            
         }
 
         private static void DisplayMainMenu()
@@ -100,6 +100,9 @@ namespace VismaBookLibrary
                         patronName = Console.ReadLine();
                         _bookLogic.ReturnBook(bookId, patronName);
                         break;
+                    case "6":
+                        Console.WriteLine("Thank you for using Visma Library management system. Good-bye!");
+                        return;
 
 
                 }
@@ -110,19 +113,36 @@ namespace VismaBookLibrary
         }
         static void RegisterNewBook()
         {
-            //TODO add validations
             Console.WriteLine("Please enter the full name of the    book's author:");
             string author = Console.ReadLine();
+
             Console.WriteLine("Please enter the title of the book:");
             string title = Console.ReadLine();
+            
             Console.WriteLine("Please enter the category the book should be added to:");
             string category = Console.ReadLine();
+            
             Console.WriteLine("Please enter the language of the book is published in:");
             string language = Console.ReadLine();
+            
             Console.WriteLine("Please enter the ISBN of the book:");
             string isbn = Console.ReadLine();
+            Regex regex = new Regex(@"^[0-9]{13}$");
+            if (!regex.IsMatch(isbn))
+            {
+                Console.WriteLine("Please ensure that the ISBN number supplied is correct. \r\nThe current standard is 13 digits in length. To convert ISBNs of old titles to it, please use the ISBN calculator at https://www.isbn-international.org");
+                return;
+            }
+
             Console.WriteLine("Please enter the book's year of publication:");
             int publicationDate = int.Parse(Console.ReadLine());
+            regex = new Regex(@"^[0-9]{4}$");
+            //publicationDate.ToString();
+            if (!regex.IsMatch(publicationDate.ToString()))
+            {
+                Console.WriteLine("Please ensure that the date of publication is correct. Accepted format: YYYY.");
+                return;
+            }
 
             Book book = new Book(author, title, category, language, isbn, publicationDate);
             _bookLogic.SaveBook(book);
@@ -186,9 +206,9 @@ namespace VismaBookLibrary
                 case "5":
                     Console.WriteLine("Please provide the ISBN of the book.");
                     string isbn = Console.ReadLine();
+                    
                     filteredBooks = _bookLogic.GetBooksByISBN(isbn);
-                    foreach (var book in filteredBooks)
-                    {
+                    foreach (var book in filteredBooks) { 
                         Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
                     }
                     break;
