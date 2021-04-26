@@ -52,18 +52,54 @@ namespace VismaBookLibrary
                         Console.Clear();
                         RegisterNewBook();
                         break;
+
                     case "2":
                         Console.Clear();
                         DisplayBooks();
                         break;
+
                     case "3":
-                        Console.WriteLine("Please enter the ID of the book you wish to remove from the catalogue.");
-                        int id = int.Parse(Console.ReadLine());
-                        _bookLogic.DeleteBook(id);
+                        var filteredBooks = _bookLogic.GetBooks();
+                        foreach (var book in filteredBooks)
+                        {
+                            Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
+                        }
+                        Console.WriteLine("Please enter the ID of the book you wish to remove from the catalogue above.");
+                        int bookId = int.Parse(Console.ReadLine());
+                        _bookLogic.DeleteBook(bookId);
                         Console.WriteLine("The book has been successfully removed from the library database.\r\n");
                         break;
-                    //case "4":
 
+                    case "4":
+                        bool isAvailable = true;
+                        filteredBooks = _bookLogic.GetBooksByAvailability(isAvailable);
+                        foreach (var book in filteredBooks)
+                        {
+                            Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
+                        }
+                        Console.WriteLine("Please enter the ID of the book you are loaning out.");
+                        bookId = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter the full name of the library patron that wishes to borrow the book.");
+                        string patronName = Console.ReadLine();
+                        Console.WriteLine("Plase set the intended borrowing period as number of days");
+                        int requestedLoanPeriod = int.Parse(Console.ReadLine());
+                        _bookLogic.LoanBook(bookId, patronName, requestedLoanPeriod);
+                        break;
+
+                    case "5":
+                        isAvailable = false;
+                        filteredBooks = _bookLogic.GetBooksByAvailability(isAvailable);
+                        foreach(var book in filteredBooks)
+                        {
+                            Console.WriteLine($"Book Id: {book.Id}; \r\n{book.Title}, by {book.Author}, {book.PublicationDate}; \r\ncategory:{book.Category}, language: {book.Language} \r\nISBN: {book.ISBN} \r\n");
+                        }
+                        Console.WriteLine("--------------------------------------------");
+                        Console.WriteLine("Please enter the ID of the book you are returning.");
+                        bookId = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter the full name of the library patron that is returning the book.");
+                        patronName = Console.ReadLine();
+                        _bookLogic.ReturnBook(bookId, patronName);
+                        break;
 
 
                 }
