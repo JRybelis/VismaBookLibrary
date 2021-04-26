@@ -24,6 +24,23 @@ namespace VismaBookLibrary.BusinessLogic
             book.Id = _booksData.GetMaxId() + 1;
             _booksData.SaveBook(book);
         }
+
+        public void DeleteBook(int bookId, string patronName)
+        {
+            var book = _booksData.GetRequestedBook(bookId);
+            
+            if (book == null)
+            {
+                Console.WriteLine("The queried book is not part of the library catalogue. Please review your query.");
+                return;
+            } else if (book.Patron != null)
+            {
+                Console.WriteLine("This book is currently on loan. It may not be removed from the library catalogue until it is returned.");
+                return;
+            }
+
+            _booksData.DeleteBook(book);
+        }
         public void LoanBook(int bookId, string patronName, int requestedLoanPeriod)
         {
             var book = _booksData.GetRequestedBook(bookId);

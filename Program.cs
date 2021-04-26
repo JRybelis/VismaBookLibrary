@@ -21,6 +21,7 @@ namespace VismaBookLibrary
         {
             SetupDependencies();
 
+            //            Book book = new Book()
             var book = new Book
             {
                 Author = "aa2",
